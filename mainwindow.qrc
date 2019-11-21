@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/copy.png</file>
+        <file>images/cut.png</file>
+        <file>images/new.png</file>
+        <file>images/open.png</file>
+        <file>images/paste.png</file>
+        <file>images/save.png</file>
+        <file>images/down.png</file>
+        <file>images/up.png</file>
+        <file>images/off.png</file>
+        <file>images/on.png</file>
+        <file>images/button_on.png</file>
+        <file>images/button_off.png</file>
+        <file>images/help.png</file>
+        <file>images/switch_on.png</file>
+        <file>images/switch_off.png</file>
+        <file>images/disconnect.png</file>
+        <file>images/connect.png</file>
+        <file>images/settings.png</file>
+        <file>images/logo.jpg</file>
+    </qresource>
+</RCC>
