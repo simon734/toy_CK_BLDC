@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include <sstream>
 #include <iomanip>
 #include "ui_mainwindow.h"
@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
     // setWindowFlags(Qt::Dialog | Qt::MSWindowsFixedSizeDialogHint);
     setFixedSize(width(), height());
     ui->statusbar->addWidget(m_status);
-    setStatus(QStringLiteral("未连接"));
+    setStatus(QString::fromWCharArray(DISCONNECTED));
     DataTransfer::Instance()->SetShowStatusCallback(this);
     SerialComm::Instance()->SetShowStatusCallback(this);
     widgetMgr.init(this);
@@ -189,30 +189,30 @@ void MainWindow::onPIChanged(bool checked) {
 void MainWindow::createAction() {
     QToolBar *commToolBar = addToolBar(tr("Comm"));
     const QIcon settingIcon = QIcon::fromTheme("document-open", QIcon(":/images/settings.png"));
-    QAction *settingAct = new QAction(settingIcon, tr("串口设置"), this);
+    QAction *settingAct = new QAction(settingIcon, QString::fromWCharArray(COM_SETTING), this);
     connect(settingAct, &QAction::triggered, SerialComm::Instance(), &SerialComm::showSetting);
     commToolBar->addAction(settingAct);
 
     const auto connIcon = QIcon(":/images/connect.png");
-    QAction *connAct = new QAction(connIcon, tr("连接串口"), this);
+    QAction *connAct = new QAction(connIcon, QString::fromWCharArray(COM_CONNECT), this);
     connect(connAct, &QAction::triggered, this, &MainWindow::openSerialPort);
     commToolBar->addAction(connAct);
 
     const auto disconnIcon = QIcon(":/images/disconnect.png");
-    QAction *disconnAct = new QAction(disconnIcon, tr("断开连接"), this);
+    QAction *disconnAct = new QAction(disconnIcon, QString::fromWCharArray(COM_DISCONNECT), this);
     connect(disconnAct, &QAction::triggered, this, &MainWindow::closeSerialPort);
     commToolBar->addAction(disconnAct);
 
     ////////////////////////////////////////////////
     QToolBar *fileToolBar = addToolBar(tr("File"));
     const QIcon openIcon = QIcon::fromTheme("document-open", QIcon(":/images/open.png"));
-    QAction *openAct = new QAction(openIcon, tr("加载参数"), this);
+    QAction *openAct = new QAction(openIcon, QString::fromWCharArray(LOAD_DATA), this);
     openAct->setShortcuts(QKeySequence::Open);
     connect(openAct, &QAction::triggered, this, &MainWindow::load);
     fileToolBar->addAction(openAct);
 
     const QIcon saveIcon = QIcon::fromTheme("document-save", QIcon(":/images/save.png"));
-    QAction *saveAct = new QAction(saveIcon, tr("保存参数"), this);
+    QAction *saveAct = new QAction(saveIcon, QString::fromWCharArray(SAVE_DATA), this);
     saveAct->setShortcuts(QKeySequence::Save);
     connect(saveAct, &QAction::triggered, this, &MainWindow::save);
     fileToolBar->addAction(saveAct);
@@ -230,19 +230,19 @@ void MainWindow::createAction() {
     ////////////////////////////////////////////////
     QToolBar *operToolBar = addToolBar(tr("Operation"));
     const QIcon downIcon = QIcon::fromTheme("document-down", QIcon(":/images/down.png"));
-    QAction *downAct = new QAction(downIcon, tr("写入设备"), this);
+    QAction *downAct = new QAction(downIcon, QString::fromWCharArray(WRITE_TO_DEVICE), this);
     connect(downAct, &QAction::triggered, this, &MainWindow::write);
     operToolBar->addAction(downAct);
 
     const QIcon upIcon = QIcon::fromTheme("document-up", QIcon(":/images/up.png"));
-    QAction *upAct = new QAction(upIcon, tr("读取设备"), this);
+    QAction *upAct = new QAction(upIcon, QString::fromWCharArray(READ_FROM_DEVICE), this);
     connect(upAct, &QAction::triggered, this, &MainWindow::read);
     operToolBar->addAction(upAct);
 
     ////////////////////////////////////////////////
     QToolBar *helpToolBar = addToolBar(tr("Help"));
     const QIcon helpIcon = QIcon::fromTheme("document-help", QIcon(":/images/help.png"));
-    QAction *helpAct = new QAction(helpIcon, tr("帮助文档"), this);
+    QAction *helpAct = new QAction(helpIcon, QString::fromWCharArray(HELP), this);
     connect(helpAct, &QAction::triggered, this, &MainWindow::help);
     helpToolBar->addAction(helpAct);
 }
@@ -307,6 +307,7 @@ bool MainWindow::openSerialPort() {
     if (is_ok) {
         SetNormalMode();
     }
+    return is_ok;
 }
 
 void MainWindow::closeSerialPort() {

@@ -5,6 +5,7 @@
 
 int main(int argc, char *argv[])
 {
+    FreeConsole();
     QApplication a(argc, argv);
     LOGUTILS::initLogging();
 

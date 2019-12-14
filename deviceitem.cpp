@@ -1,4 +1,4 @@
-#include "deviceitem.h"
+﻿#include "deviceitem.h"
 #include <sstream>
 #include <iomanip>
 #include <QString>
@@ -7,6 +7,7 @@
 #include <QJsonArray>
 #include <QTextStream>
 #include "mainwindow.h"
+#include "basic_def.h"
 
 
 static const char* FILE_CK3864S_BIN = "CK3864S.bin";
@@ -14,17 +15,17 @@ static const char* FILE_CK3862S_BIN = "CK3862S.bin";
 static const char* FILE_CK3864S_JSON = "CK3864S.json";
 static const char* FILE_CK3862S_JSON = "CK3862S.json";
 
-static const auto J_DEVICENAME = QStringLiteral("device_name");
-static const auto J_VERSION = QStringLiteral("version");
-static const auto J_META = QStringLiteral("meta");
-static const auto J_ITEMS = QStringLiteral("items");
+static const char* J_DEVICENAME = "device_name";
+static const char* J_VERSION = "version";
+static const char* J_META = "meta";
+static const char* J_ITEMS = "items";
 
-static const auto J_NAME = QStringLiteral("name");
-static const auto J_ITEM_TYPE = QStringLiteral("item_type");
-static const auto J_DESC = QStringLiteral("desc");
-static const auto J_MIN_VALUE = QStringLiteral("min_value");
-static const auto J_MAX_VALUE = QStringLiteral("max_value");
-static const auto J_VALUE = QStringLiteral("value");
+static const char* J_NAME       = "name";
+static const char* J_ITEM_TYPE  = "item_type";
+static const char* J_DESC       = "desc";
+static const char* J_MIN_VALUE  = "min_value";
+static const char* J_MAX_VALUE  = "max_value";
+static const char* J_VALUE      = "value";
 
 static const unsigned int VERSION = 1;  // 递增
 
@@ -158,33 +159,33 @@ void DeviceManager::load_CK3864S_Default() {
     device_type_ = DeviceType::CK3864S;
     items_.clear();
 
-    addItem("A-Limit:",          1, 250      , 12, QStringLiteral("限流"));
-    addItem("A-OverLoad:",       1, 250      , 20, QStringLiteral("过流"));
-    addItem("Spd:",              1, 100      , 10,  QStringLiteral("(MS) 缓启动"));
-    addItem("Locked Rotor-Time:",1, 100      , 5,  QStringLiteral("(100 MS) 堵转保护时间") );
-    addItem("Reboot-Count:",     1, 255      , 5,  QStringLiteral("堵转重启次数") );
-    addItem("Reboot-Interval:",  1, 250      , 30, QStringLiteral("(100 MS) 重启等待时间"));
-    addItem("Stall:",            1, 250      , 25, QStringLiteral("(MS) 软换相深度"));
-    addItem("StartP:",           1, 120      , 15, QStringLiteral("(1/220) 启动力度"));
-    addItem("StartT:",           5, 100      , 25, QStringLiteral("(MS) 启动周期"));
-    addItem("Evol-Count:",       1, 30       , 5,  QStringLiteral("连续同步次数"));
-    addItem("ZC-Limit:",         1, 200      , 10, QStringLiteral("(50 US) ZC滤波深度"));
-    addItem("Start-Limit:",      1, 250      , 4, QStringLiteral("(250 MS) 启动时间限定") );
-    addItem("Start-Step:",       1, 250      , 2, QStringLiteral("强制同步次数"));
+    addItem("A-Limit:",          1, 250      , 12, A_LIMIT          );
+    addItem("A-OverLoad:",       1, 250      , 20, A_OVERLOAD       );
+    addItem("Spd:",              1, 100      , 10, SPD              );
+    addItem("Locked Rotor-Time:",1, 100      , 5,  LOCKED_ROTOR_TIME);
+    addItem("Reboot-Count:",     1, 255      , 5,  REBOOT_COUNT     );
+    addItem("Reboot-Interval:",  1, 250      , 30, REBOOT_INTERVAL  );
+    addItem("Stall:",            1, 250      , 25, STALL            );
+    addItem("StartP:",           1, 120      , 15, STARTP           );
+    addItem("StartT:",           5, 100      , 25, STARTT           );
+    addItem("Evol-Count:",       1, 30       , 5,  EVOL_COUNT       );
+    addItem("ZC-Limit:",         1, 200      , 10, ZC_LIMIT         );
+    addItem("Start-Limit:",      1, 250      , 4,  START_LIMIT      );
+    addItem("Start-Step:",       1, 250      , 2,  START_STEP       );
 }
 
 void DeviceManager::load_CK3862S_Default() {
     device_type_ = DeviceType::CK3862S;
     items_.clear();
 
-    addItem("A-Limit:",          1, 250      , 12, QStringLiteral("限流"));
-    addItem("A-OverLoad:",       1, 250      , 20, QStringLiteral("过流"));
-    addItem("Spd:",              1, 100      , 10, QStringLiteral("(MS) 缓启动"));
-    addItem("Locked Rotor-Time:",1, 100      , 5, QStringLiteral("(100 MS) 堵转保护时间"));
-    addItem("Reboot-Count:",     1, 255      , 5, QStringLiteral("堵转重启次数"));
-    addItem("Reboot-Interval:",  1, 250      , 30, QStringLiteral("(100 MS) 重启等待时间"));
-    addItem("Stall:",            1, 250      , 25, QStringLiteral("(MS) 软换相深度"));
-    addItem("StartP:",           1, 120      , 5, QStringLiteral("(1/220) 启动力度"));
+    addItem("A-Limit:",          1, 250      , 12, A_LIMIT          );
+    addItem("A-OverLoad:",       1, 250      , 20, A_OVERLOAD       );
+    addItem("Spd:",              1, 100      , 10, SPD              );
+    addItem("Locked Rotor-Time:",1, 100      , 5 , LOCKED_ROTOR_TIME);
+    addItem("Reboot-Count:",     1, 255      , 5 , REBOOT_COUNT     );
+    addItem("Reboot-Interval:",  1, 250      , 30, REBOOT_INTERVAL  );
+    addItem("Stall:",            1, 250      , 25, STALL            );
+    addItem("StartP:",           1, 120      , 5 , STARTP           );
 }
 
 const ItemVector &DeviceManager::getItems() const {
@@ -302,9 +303,9 @@ QString DeviceManager::defaultFileName(SaveFormat save_format) const {
     }
 }
 
-void DeviceManager::addItem(const char *name, ValueType min, ValueType max, ValueType value, const QString& desc) {
+void DeviceManager::addItem(const char *name, ValueType min, ValueType max, ValueType value, const wchar_t* desc) {
    DeviceItem item;
-   item.makeItem(name, min, max, value, desc);
+   item.makeItem(name, min, max, value, (desc != nullptr ? QString::fromWCharArray(desc) : QString()));
    items_.push_back(item);
 }
 

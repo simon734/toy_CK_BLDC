@@ -1,4 +1,4 @@
-#include "serialcomm.h"
+﻿#include "serialcomm.h"
 #include <QMessageBox>
 #include "settingsdialog.h"
 
@@ -78,11 +78,11 @@ bool SerialComm::openSerialPort() {
     if (is_ok) {
         const auto msg = QString("Connected to %1").arg(p.name);
         qCritical() << tr("SerialComm::openSerialPort, Connected to %1").arg(p.name);
-        ShowStatus(tr("已连接 %1").arg(p.name));
+        ShowStatus(QString::fromWCharArray(L"已连接 %1").arg(p.name));
     } else {
         qCritical() << "SerialComm::openSerialPort, Failed to open port:"
                     << p.name << ", error=" << m_serial_->errorString();
-        ShowStatus(tr("无法连接%1").arg(p.name));
+        ShowStatus(QString::fromWCharArray(L"无法连接%1").arg(p.name));
         data_read_->onClose(-1);
     }
 
@@ -92,7 +92,7 @@ bool SerialComm::openSerialPort() {
 void SerialComm::closeSerialPort(int err) {
     if (m_serial_->isOpen())
         m_serial_->close();
-    ShowStatus(tr("未连接"));
+    ShowStatus(QString::fromWCharArray(DISCONNECTED));
     qCritical() << "SerialComm::closeSerialPort, err=" << err;
 
     if (data_read_) {

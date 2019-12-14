@@ -88,8 +88,8 @@ bool DataTransfer::Read() {
    QByteArray data;
    data.push_back(0x38);
    data.push_back(0x02);
-   data.push_back(static_cast<quint8>(0));
-   data.push_back(static_cast<quint8>(0));
+   data.push_back(static_cast<char>(0));
+   data.push_back(static_cast<char>(0));
    data.push_back(0x02);
 
    const auto is_ok = SerialComm::Instance()->writeData(data);

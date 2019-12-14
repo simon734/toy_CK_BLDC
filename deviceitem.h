@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <QJsonObject>
+#include <QObject>
 
 
 static const char* CK3864S = "CK3864S";
@@ -21,6 +22,8 @@ using ValueType = quint8;
 class DeviceItem {
 public:
     DeviceItem();
+    ~DeviceItem() = default;
+    DeviceItem(const DeviceItem&) = default;
     void write(QJsonObject &json) const;
     bool read(const QJsonObject &json);
 
@@ -51,7 +54,8 @@ private:
 };
 
 class MainWindow;
-class DeviceManager {
+class DeviceManager: public QObject {
+    Q_OBJECT
 public:
     enum SaveFormat {Json, Binary};
     enum class DeviceType {CK3864S, CK3862S};
@@ -84,7 +88,7 @@ private:
     bool readMeta(const QJsonObject &json);
     void writeMeta(QJsonObject &json) const;
     QString defaultFileName(SaveFormat save_format) const;
-    void addItem(const char* name, ValueType min, ValueType max, ValueType value, const QString& desc = QString());
+    void addItem(const char* name, ValueType min, ValueType max, ValueType value, const wchar_t* desc);
 
 private:
     ItemVector items_;

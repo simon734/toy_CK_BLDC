@@ -23,7 +23,7 @@ void DeviceBindData(MainWindow* ui) {
 
    ItemWidgetHelper item_widget(ui);
    unsigned int index = 1;
-   for (auto item: items) {
+   for (const auto& item: items) {
        item_widget.Reset(index++);
        item_widget.SetVisible(true);
        item_widget.SetValue(item);
