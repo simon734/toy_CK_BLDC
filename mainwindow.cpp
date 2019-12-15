@@ -251,8 +251,8 @@ void MainWindow::connectDbgItems() {
     auto pb_power = findChild<QPushButton*>("pb_power");
     auto pb_fr = findChild<QPushButton*>("pb_fr");
     auto pb_bk = findChild<QPushButton*>("pb_bk");
-    auto cb_pi = findChild<QCheckBox*>("cb_pi");
-    assert(pb_power != nullptr && pb_fr != nullptr && pb_bk != nullptr && cb_pi != nullptr);
+    auto gb_pi = findChild<QGroupBox*>("gb_pi");
+    assert(pb_power != nullptr && pb_fr != nullptr && pb_bk != nullptr && gb_pi != nullptr);
     if (pb_power) {
         connect(pb_power, SIGNAL(released()), this, SLOT(onPowerBtnClicked()));
     }
@@ -262,8 +262,8 @@ void MainWindow::connectDbgItems() {
     if (pb_bk) {
         connect(pb_bk, SIGNAL(released()), SLOT(onBkBtnClicked()));
     }
-    if (cb_pi) {
-        connect(cb_pi, SIGNAL(clicked(bool)), this, SLOT(onPIChanged(bool)));
+    if (gb_pi) {
+        connect(gb_pi, SIGNAL(clicked(bool)), this, SLOT(onPIChanged(bool)));
     }
 }
 

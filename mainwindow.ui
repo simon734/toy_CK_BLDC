@@ -760,7 +760,7 @@
     <property name="geometry">
      <rect>
       <x>870</x>
-      <y>360</y>
+      <y>371</y>
       <width>34</width>
       <height>19</height>
      </rect>
@@ -778,7 +778,7 @@
     <property name="geometry">
      <rect>
       <x>924</x>
-      <y>360</y>
+      <y>371</y>
       <width>61</width>
       <height>21</height>
      </rect>
@@ -994,7 +994,7 @@ QPushButton:pressed {
     <property name="geometry">
      <rect>
       <x>660</x>
-      <y>359</y>
+      <y>370</y>
       <width>201</width>
       <height>22</height>
      </rect>
@@ -1064,8 +1064,8 @@ border-radius: 4px;
    <widget class="QSpinBox" name="sb_pole">
     <property name="geometry">
      <rect>
-      <x>660</x>
-      <y>270</y>
+      <x>890</x>
+      <y>260</y>
       <width>81</width>
       <height>22</height>
      </rect>
@@ -1074,9 +1074,9 @@ border-radius: 4px;
    <widget class="QLabel" name="label_59">
     <property name="geometry">
      <rect>
-      <x>750</x>
-      <y>270</y>
-      <width>32</width>
+      <x>980</x>
+      <y>260</y>
+      <width>51</width>
       <height>19</height>
      </rect>
     </property>
@@ -1437,35 +1437,11 @@ border-radius: 4px;
      <string>FG(Hz)</string>
     </property>
    </widget>
-   <widget class="QCheckBox" name="cb_pi">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>270</y>
-      <width>51</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>  PI</string>
-    </property>
-    <property name="iconSize">
-     <size>
-      <width>32</width>
-      <height>32</height>
-     </size>
-    </property>
-   </widget>
    <widget class="QWidget" name="layoutWidget_2">
     <property name="geometry">
      <rect>
       <x>750</x>
-      <y>310</y>
+      <y>320</y>
       <width>71</width>
       <height>27</height>
      </rect>
@@ -1499,7 +1475,7 @@ border-radius: 4px;
     <property name="geometry">
      <rect>
       <x>840</x>
-      <y>310</y>
+      <y>320</y>
       <width>188</width>
       <height>27</height>
      </rect>
@@ -1536,7 +1512,7 @@ border-radius: 4px;
     <property name="geometry">
      <rect>
       <x>657</x>
-      <y>311</y>
+      <y>321</y>
       <width>71</width>
       <height>27</height>
      </rect>
@@ -1566,6 +1542,30 @@ border-radius: 4px;
      </item>
     </layout>
    </widget>
+   <widget class="QGroupBox" name="gb_pi">
+    <property name="geometry">
+     <rect>
+      <x>650</x>
+      <y>280</y>
+      <width>391</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>PI</string>
+    </property>
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>false</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -1573,7 +1573,7 @@ border-radius: 4px;
      <x>0</x>
      <y>0</y>
      <width>1050</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

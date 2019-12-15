@@ -50,7 +50,7 @@ private:
     bool is_pi_checked = true;
 
     QSpinBox* sb_pole = nullptr;
-    QCheckBox* cb_pi = nullptr;
+    QGroupBox* gb_pi = nullptr;
     QSpinBox* sb_p = nullptr;
     QSpinBox* sb_i = nullptr;
     QSpinBox* sb_pi_time = nullptr;

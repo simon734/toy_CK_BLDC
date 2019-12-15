@@ -40,7 +40,7 @@ DbgWidgetMgr::DbgWidgetMgr() {
 
 void DbgWidgetMgr::findAllItems() {
     sb_pole = ui->findChild<QSpinBox*>("sb_pole");
-    cb_pi = ui->findChild<QCheckBox*>("cb_pi");
+    gb_pi = ui->findChild<QGroupBox*>("gb_pi");
     sb_p = ui->findChild<QSpinBox*>("sb_p");
     sb_i = ui->findChild<QSpinBox*>("sb_i");
     sb_pi_time = ui->findChild<QSpinBox*>("sb_pi_time");
@@ -158,14 +158,14 @@ void DbgWidgetMgr::initVSP() {
 }
 
 void DbgWidgetMgr::initPole() {
-    assert(sb_pole != nullptr && cb_pi != nullptr && sb_p != nullptr &&
+    assert(sb_pole != nullptr && gb_pi != nullptr && sb_p != nullptr &&
             sb_i != nullptr && sb_pi_time != nullptr);
-    if (sb_pole == nullptr || cb_pi == nullptr || sb_p == nullptr ||
+    if (sb_pole == nullptr || gb_pi == nullptr || sb_p == nullptr ||
             sb_i == nullptr || sb_pi_time == nullptr) {
         return;
     }
 
-    cb_pi->setChecked(is_pi_checked);
+    gb_pi->setChecked(is_pi_checked);
 
     sb_pole->setMinimum(POLE_MIN);
     sb_pole->setMaximum(POLE_MAX);
