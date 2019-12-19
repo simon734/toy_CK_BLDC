@@ -13,6 +13,7 @@ public:
     void Reset(unsigned int index);
     void SetValue(const DeviceItem& item);
     void SetVisible(bool is_visible);
+    void Enable(bool enable);
 
 private:
     MainWindow* ui = nullptr;
@@ -24,6 +25,7 @@ private:
     QLineEdit* edit = nullptr;
 };
 void DeviceBindData(MainWindow* ui);
+void DeviceEnableState(MainWindow* ui, bool enable);
 
 class DbgWidgetMgr {
 public:
@@ -31,23 +33,29 @@ public:
     bool init(MainWindow* parent);
     void uninit();
 
-    void flickPower();
+void EnableDebugBtn();
+    void flickDebug();
     void flickFr();
     void flickBk();
     void flickPI(bool checked);
+
+    void setEnableDbgState(bool enable);
+    void setEnableState(bool enable, bool is_global = true);
+    bool IsInDebugging();
 
 private:
     void findAllItems();
     void initVSP();
     void initPole();
-    void setPowerIcon();
+    void onPIFlagChanged();
+    void setDebugIcon();
     void setFrIcon();
     void setBkIcon();
 
 private:
     MainWindow* ui = nullptr;
     bool has_inited = false;
-    bool is_pi_checked = true;
+    bool is_pi_checked_ = true;
 
     QSpinBox* sb_pole = nullptr;
     QGroupBox* gb_pi = nullptr;
@@ -55,10 +63,10 @@ private:
     QSpinBox* sb_i = nullptr;
     QSpinBox* sb_pi_time = nullptr;
 
-    QPushButton* pb_power = nullptr;
+    QPushButton* pb_debug_switch = nullptr;
     QPushButton* pb_fr = nullptr;
     QPushButton* pb_bk = nullptr;
-    bool is_power_on = false;
+    bool is_in_debugging = false;
     bool is_fr_on = false;
     bool is_bk_on = false;
 };

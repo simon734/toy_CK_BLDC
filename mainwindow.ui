@@ -870,7 +870,7 @@ border-radius: 4px;
       <height>27</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="hl_i">
      <item>
       <widget class="QSpinBox" name="sb_i">
        <property name="maximum">
@@ -904,7 +904,7 @@ border-radius: 4px;
       <height>27</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="hl_pi_time">
      <item>
       <widget class="QSpinBox" name="sb_pi_time">
        <property name="minimum">
@@ -941,7 +941,7 @@ border-radius: 4px;
       <height>27</height>
      </rect>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="hl_p">
      <item>
       <widget class="QSpinBox" name="sb_p">
        <property name="maximum">
@@ -1974,6 +1974,40 @@ border-radius: 4px;
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
+   <zorder>gb_pi</zorder>
+   <zorder>label_24</zorder>
+   <zorder>label_42</zorder>
+   <zorder>label_27</zorder>
+   <zorder>label_45</zorder>
+   <zorder>label_30</zorder>
+   <zorder>label_33</zorder>
+   <zorder>label_36</zorder>
+   <zorder>label_39</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>line</zorder>
+   <zorder>graphicsView</zorder>
+   <zorder>label_57</zorder>
+   <zorder>label_58</zorder>
+   <zorder>label_61</zorder>
+   <zorder>le_vsp</zorder>
+   <zorder>pb_fr</zorder>
+   <zorder>label_62</zorder>
+   <zorder>pb_power</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>pb_bk</zorder>
+   <zorder>label_63</zorder>
+   <zorder>sd_vsp</zorder>
+   <zorder>sb_pole</zorder>
+   <zorder>label_59</zorder>
+   <zorder>layoutWidget</zorder>
+   <zorder>label_64</zorder>
+   <zorder>label_65</zorder>
+   <zorder>layoutWidget_2</zorder>
+   <zorder>layoutWidget_3</zorder>
+   <zorder>layoutWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

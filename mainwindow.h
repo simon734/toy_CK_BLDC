@@ -39,7 +39,7 @@ private slots:
     void write();
     void read();
     void help();
-    void onPowerBtnClicked();
+    void onDbgBtnClicked();
     void onFrBtnClicked();
     void onBkBtnClicked();
     void onPIChanged(bool checked);
@@ -52,9 +52,9 @@ private:
     bool isConnected();
     bool isInNormalMode();
     bool isInDebugMode();
-    void SetDisconnectMode();
-    void SetNormalMode();
-    void SetDebugMode();
+    void setDisconnectMode();
+    void setNormalMode();
+    void setDebugMode();
 
 private:
     Ui::MainWindow *ui = nullptr;

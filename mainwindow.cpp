@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     createAction();
     connectDbgItems();
     deviceTypeChanged(CK3864S);
-    SetDisconnectMode();
+    setDisconnectMode();
 }
 
 MainWindow::~MainWindow() {
@@ -67,31 +67,40 @@ bool MainWindow::isInDebugMode() {
     return (op_mode_ == OP_MODE::DEBUG);
 }
 
-void MainWindow::SetDisconnectMode() {
+void MainWindow::setDisconnectMode() {
     qCritical() << "MainWindow::SetDisconnectMode";
     op_mode_ = OP_MODE::DISCONNECT;
 
     auto dt = DataTransfer::Instance();
     dt->SetDataChangedCallback(nullptr);
     dt->Close();
+
+    widgetMgr.setEnableState(false);
+    DeviceEnableState(this, false);
 }
 
-void MainWindow::SetNormalMode() {
+void MainWindow::setNormalMode() {
     qCritical() << "MainWindow::SetNormalMode";
     op_mode_ = OP_MODE::NORMAL;
 
     auto dt = DataTransfer::Instance();
     dt->SetDataChangedCallback(this);
     dt->Open();
+
+    widgetMgr.setEnableDbgState(true);
+    DeviceEnableState(this, true);
 }
 
-void MainWindow::SetDebugMode() {
+void MainWindow::setDebugMode() {
     qCritical() << "MainWindow::SetDebugMode";
     op_mode_ = OP_MODE::DEBUG;
 
     auto dt = DataTransfer::Instance();
     dt->SetDataChangedCallback(nullptr);
     dt->Close();
+
+    widgetMgr.setEnableState(true);
+    DeviceEnableState(this, false);
 }
 
 void MainWindow::load() {
@@ -145,14 +154,19 @@ void MainWindow::help() {
     qCritical() << "MainWindow::help";
 }
 
-void MainWindow::onPowerBtnClicked() {
-    qCritical() << "MainWindow::onPowerBtnClicked, op_mode=" << static_cast<int>(op_mode_);
+void MainWindow::onDbgBtnClicked() {
+    qCritical() << "MainWindow::onDbgBtnClicked, op_mode=" << static_cast<int>(op_mode_);
     if (!isConnected()) {
         assert(false);
         return;
     }
 
-   widgetMgr.flickPower();
+   widgetMgr.flickDebug();
+   if (widgetMgr.IsInDebugging()) {
+       setDebugMode();
+   } else {
+       setNormalMode();
+   }
 }
 
 void MainWindow::onFrBtnClicked() {
@@ -254,7 +268,7 @@ void MainWindow::connectDbgItems() {
     auto gb_pi = findChild<QGroupBox*>("gb_pi");
     assert(pb_power != nullptr && pb_fr != nullptr && pb_bk != nullptr && gb_pi != nullptr);
     if (pb_power) {
-        connect(pb_power, SIGNAL(released()), this, SLOT(onPowerBtnClicked()));
+        connect(pb_power, SIGNAL(released()), this, SLOT(onDbgBtnClicked()));
     }
     if (pb_fr) {
         connect(pb_fr, SIGNAL(released()), this, SLOT(onFrBtnClicked()));
@@ -298,14 +312,14 @@ void MainWindow::onDataChange() {
 
 void MainWindow::onError(int err) {
     qCritical() << "MainWindow::onError, err=" << err;
-    SetDisconnectMode();
+    setDisconnectMode();
 }
 
 bool MainWindow::openSerialPort() {
     const auto is_ok = SerialComm::Instance()->openSerialPort();
     qCritical() << "MainWindow::openSerialPort, result=" << is_ok;
     if (is_ok) {
-        SetNormalMode();
+        setNormalMode();
     }
     return is_ok;
 }
@@ -313,6 +327,6 @@ bool MainWindow::openSerialPort() {
 void MainWindow::closeSerialPort() {
     qCritical() << "MainWindow::closeSerialPort";
     SerialComm::Instance()->closeSerialPort(0);
-    SetDisconnectMode();
+    setDisconnectMode();
 }
 
