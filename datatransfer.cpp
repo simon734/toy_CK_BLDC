@@ -36,7 +36,7 @@ void DataTransfer::Open() {
     if (!IsOpen()) {
         SetReadyMode();
         SerialComm::Instance()->SetDataReadCallback(this);
-        timer_id_ = startTimer(std::chrono::milliseconds(MAX_READ_DATA_INTERVAL));
+        timer_id_ = startTimer(std::chrono::milliseconds(MAX_READ_DATA_INTERVAL).count());
         assert(timer_id_ != 0);
     }
 }

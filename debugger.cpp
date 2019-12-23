@@ -32,9 +32,9 @@ void Debugger::Start() {
     if (!IsInDebugging()) {
         SetDebugMode();
         SerialComm::Instance()->SetDataReadCallback(this);
-        timer_id_for_write_ = startTimer(std::chrono::milliseconds(DEBUG_WRIRE_DATA_INTERVAL));
+        timer_id_for_write_ = startTimer(std::chrono::milliseconds(DEBUG_WRIRE_DATA_INTERVAL).count());
         assert(timer_id_for_write_ != 0);
-        timer_id_for_read_ = startTimer(std::chrono::milliseconds(MAX_READ_DATA_INTERVAL));
+        timer_id_for_read_ = startTimer(std::chrono::milliseconds(MAX_READ_DATA_INTERVAL).count());
         assert(timer_id_for_read_ != 0);
     }
 }
