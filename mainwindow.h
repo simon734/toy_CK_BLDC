@@ -45,6 +45,7 @@ private slots:
     void onPIChanged(bool checked);
 
 private:
+    void setLogo();
     void createAction();
     void connectDbgItems();
     void deviceTypeChanged(const QString& type);

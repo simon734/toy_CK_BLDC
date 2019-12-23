@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 #include "datatransfer.h"
 
+constexpr const char* ICON_LOGO = ":/images/logo.jpg";
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -18,6 +19,7 @@ MainWindow::MainWindow(QWidget *parent)
     SerialComm::Instance()->SetShowStatusCallback(this);
     widgetMgr.init(this);
 
+    setLogo();
     createAction();
     connectDbgItems();
     deviceTypeChanged(CK3864S);
@@ -33,6 +35,17 @@ MainWindow::~MainWindow() {
 
     delete ui;
     ui = nullptr;
+}
+
+void MainWindow::setLogo() {
+    QLabel* view = findChild<QLabel*>("lb_logo");
+    if (view == nullptr) {
+        assert(false);
+        return;
+    }
+    QPixmap image(ICON_LOGO);
+    view->setPixmap(image);
+    view->setScaledContents(true);
 }
 
 void MainWindow::removeItemsConnection() {

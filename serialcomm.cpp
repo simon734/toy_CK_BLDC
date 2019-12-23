@@ -32,9 +32,10 @@ bool SerialComm::is_ready() {
 }
 
 bool SerialComm::writeData(const QByteArray &data) {
-    const auto byte_writen = m_serial_->write(data);
-    assert(byte_writen == data.size());
-    return (byte_writen == data.size());
+    const auto byte_written = m_serial_->write(data);
+    qCritical() << "SerialComm::writeData, byte_written=" << byte_written;
+    assert(byte_written == data.size());
+    return (byte_written == data.size());
 }
 
 void SerialComm::readData() {
