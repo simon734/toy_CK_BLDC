@@ -150,6 +150,8 @@ void MainWindow::write() {
         return;
     }
 
+    auto& devMgr = DeviceManager::Instance();
+    devMgr.refreshItemData(this);
     DataTransfer::Instance()->Write();
 }
 

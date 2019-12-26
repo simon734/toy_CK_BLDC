@@ -68,8 +68,7 @@ namespace LOGUTILS
       }
   }
 
-  void myMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString& txt)
-  {
+  void myMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString& txt) {
     //check file size and if needed create new log!
     {
       QFile outFileCheck(logFileName);
@@ -87,6 +86,6 @@ namespace LOGUTILS
     QTextStream ts(&outFile);
 //    ts << context.file << "@" << context.line << ", " << context.function
 //       << "  " << txt << endl;
-    ts << txt << endl;
+    ts << QDateTime::currentDateTime().toString() << "  " << txt << endl;
   }
 }

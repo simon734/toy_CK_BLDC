@@ -41,6 +41,7 @@ bool SerialComm::writeData(const QByteArray &data) {
 void SerialComm::readData() {
     QByteArray data = m_serial_->readAll();
 
+    qCritical() << "SerialComm::readData, data_size=" << data.size();
     if (data_read_) {
         data_read_->onRead(std::move(data));
     }
